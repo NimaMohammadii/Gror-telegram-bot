@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صرافی خفن</title>
+  <link rel="stylesheet" href="sarafi.css">
+</head>
+<body>
+  <header>
+    <h1>صرافی خفن</h1>
+  </header>
+  <main>
+    <div class="converter">
+      <label for="from">از:</label>
+      <select id="from">
+        <option value="USD">دلار</option>
+        <option value="EUR">یورو</option>
+        <option value="IRR">ریال</option>
+      </select>
+      <label for="amount">مقدار:</label>
+      <input type="number" id="amount" placeholder="مقدار">
+      <label for="to">به:</label>
+      <select id="to">
+        <option value="IRR">ریال</option>
+        <option value="USD">دلار</option>
+        <option value="EUR">یورو</option>
+      </select>
+      <button id="convert">تبدیل</button>
+      <p class="result">نتیجه: <span id="result">0</span></p>
+    </div>
+  </main>
+<script src="sarafi.js"></script>
+</body>
+</html>
