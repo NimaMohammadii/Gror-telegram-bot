@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Awesome Store</h1>
+    <nav>
+      <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+  <main>
+    <section class="products">
+      <article class="product" data-name="T-Shirt" data-price="20">
+        <h2>T-Shirt</h2>
+        <p>Cool T-Shirt for everyday use.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </article>
+      <article class="product" data-name="Mug" data-price="10">
+        <h2>Mug</h2>
+        <p>Stylish mug for your drinks.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </article>
+      <article class="product" data-name="Sticker" data-price="5">
+        <h2>Sticker</h2>
+        <p>Decorate your laptop with these stickers.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </article>
+    </section>
+    <section id="cart" class="hidden">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="cart-total">0</span></p>
+    </section>
+  </main>
+<script src="script.js"></script>
+</body>
+</html>
