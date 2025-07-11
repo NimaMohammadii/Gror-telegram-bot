@@ -2,6 +2,7 @@ import logging
 import os
 from dotenv import load_dotenv
 import requests
+from dex_screener_tokens import fetch_all_tokens
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -68,10 +69,28 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         await update.message.reply_text(f"خطای نامشخص ({response.status_code}).")
 
 
+async def tokens_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Send a list of tokens from DexScreener."""
+    tokens = fetch_all_tokens(limit=10)
+    if not tokens:
+        await update.message.reply_text("خطا در دریافت توکن‌ها.")
+        return
+    lines = []
+    for token in tokens:
+        base = token.get("baseToken", {})
+        symbol = base.get("symbol")
+        address = base.get("address")
+        if symbol and address:
+            lines.append(f"{symbol} - {address}")
+
+    await update.message.reply_text("\n".join(lines))
+
+
 def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("tokens", tokens_command))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     logger.info("Bot started...")
